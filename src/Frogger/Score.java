@@ -1,5 +1,3 @@
-package Frogger;
-
 import java.util.Date;
 
 public class Score {

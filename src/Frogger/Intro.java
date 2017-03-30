@@ -109,11 +109,13 @@ public class Intro extends javax.swing.JFrame {
     }//GEN-LAST:event_playButtonActionPerformed
 
     private void exitButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exitButtonActionPerformed
-        // TODO add your handling code here:
+        System.exit(0);
     }//GEN-LAST:event_exitButtonActionPerformed
 
     private void scoreButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_scoreButtonActionPerformed
-        // TODO add your handling code here:
+        ScorePanel sp = new ScorePanel();
+        sp.setVisible(true);
+        this.setVisible(false);
     }//GEN-LAST:event_scoreButtonActionPerformed
 
     /**

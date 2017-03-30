@@ -1,6 +1,4 @@
 
-package Frogger;
-
 import java.io.IOException;
 
 public class TestJeu {
