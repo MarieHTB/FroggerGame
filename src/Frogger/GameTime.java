@@ -1,13 +1,13 @@
-package Frogger;
+
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class GameTime implements ActionListener {
 
-	private Game game;
+	private World game;
 	
-	public GameTime(Game game) {
+	public GameTime(World game) {
 		this.game = game;
 	}
 	
