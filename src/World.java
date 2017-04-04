@@ -32,7 +32,6 @@ public class World extends javax.swing.JFrame {
      */
     public World() {
         this.life = 3;
-        this.speedCoeff = 1;
         this.score = 0;
         this.level = 1;
         this.gameDuration = GAME_TIME;
@@ -171,15 +170,19 @@ public class World extends javax.swing.JFrame {
 	}
 	
 	public void gameOver(){
-		System.out.println("GAME OVER");
+            System.out.println("GAME OVER");
 		
-		this.removeKeyListener(this.keyEventListener);
+            this.removeKeyListener(this.keyEventListener);
+            GameOver go =   new GameOver(score);
+            go.setVisible(true);
+            this.setVisible(false);
+            this.dispose();
 	}
 
 	public void gameCompleted(){
 		this.cleanTimer();
 		double tempScore = (double)(GAME_TIME - this.gameDuration)/(double)GAME_TIME;
-		this.score += tempScore*100;
+		this.score += tempScore*100*speedCoeff;
 		this.levelUp();
     }  
 	

@@ -1,3 +1,14 @@
+
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.Date;
+import java.util.List;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -13,10 +24,48 @@ public class ScorePanel extends javax.swing.JFrame {
     /**
      * Creates new form ScorePanel
      */
+    private String filePath;
+    
     public ScorePanel() {
         initComponents();
+        filePath = "froggerScores.txt";
     }
-
+public List<Score> checkTopScores(){
+		 ArrayList<Score> scores = new ArrayList<Score>();
+		 try {
+			 File file = new File(this.filePath);
+			 file.createNewFile();			 
+			 FileReader fileReader = new FileReader(this.filePath);
+			 BufferedReader bufferedReader = new BufferedReader(fileReader);
+			 
+			 String line;
+			 while ((line = bufferedReader.readLine()) != null) {
+				 String[] temp = line.split(";");
+				 Score score = new Score(temp[0], Integer.parseInt(temp[1]),  new Date(temp[2]));
+				 scores.add(score);
+			}
+			 	bufferedReader.close();
+				fileReader.close();				
+				
+		}
+		
+		catch (IOException e) {
+				System.out.println("Probleme durant la lecture du fichier");
+		}
+		
+		 Collections.sort(scores, Comparator.comparing(Score::getScore).reversed());
+		 
+		 
+		//aller chercher resultats du fichier filePath
+		List<Score> tempScore;
+		if(scores.size() > 10){
+			tempScore = scores.subList(0, 10);
+		}
+		else{
+			tempScore = scores.subList(0, scores.size());
+		}
+		return tempScore;
+	}
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -85,6 +134,7 @@ public class ScorePanel extends javax.swing.JFrame {
         Intro intro = new Intro();
         intro.setVisible(true);
         this.setVisible(false);
+        this.dispose();
     }//GEN-LAST:event_retourActionPerformed
 
     /**

@@ -32,9 +32,10 @@ public class Intro extends javax.swing.JFrame {
         titleLabel = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(600, 650));
+        setTitle("FROGGER");
+        setBackground(new java.awt.Color(0, 0, 0));
 
-        playButton.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        playButton.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         playButton.setText("Jouer");
         playButton.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         playButton.setMaximumSize(new java.awt.Dimension(200, 100));
@@ -46,7 +47,7 @@ public class Intro extends javax.swing.JFrame {
             }
         });
 
-        scoreButton.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        scoreButton.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         scoreButton.setText("Scores");
         scoreButton.setMinimumSize(new java.awt.Dimension(200, 100));
         scoreButton.setPreferredSize(new java.awt.Dimension(200, 50));
@@ -56,7 +57,7 @@ public class Intro extends javax.swing.JFrame {
             }
         });
 
-        exitButton.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        exitButton.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         exitButton.setText("Sortir");
         exitButton.setMinimumSize(new java.awt.Dimension(200, 100));
         exitButton.setPreferredSize(new java.awt.Dimension(200, 50));
@@ -79,10 +80,9 @@ public class Intro extends javax.swing.JFrame {
                 .addGap(200, 200, 200)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(titleLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addComponent(exitButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(scoreButton, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(playButton, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addComponent(exitButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(scoreButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(playButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(200, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -106,6 +106,7 @@ public class Intro extends javax.swing.JFrame {
         World world =   new World();
         world.setVisible(true);
         this.setVisible(false);
+        this.dispose();
     }//GEN-LAST:event_playButtonActionPerformed
 
     private void exitButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exitButtonActionPerformed
@@ -116,6 +117,7 @@ public class Intro extends javax.swing.JFrame {
         ScorePanel sp = new ScorePanel();
         sp.setVisible(true);
         this.setVisible(false);
+        this.dispose();
     }//GEN-LAST:event_scoreButtonActionPerformed
 
     /**
