@@ -8,11 +8,23 @@ public class Frog extends Actor {
 	}
 	
 	public void moveRight(){
-		this.setLocation(this.getX() + 40, this.getY());
+		if ((this.getX() + 60) > 600) {
+
+		} 
+		
+		else {
+			this.setLocation(this.getX() + 20, this.getY());
+		}
 	}
 	
 	public void moveLeft(){
-		this.setLocation(this.getX() - 40, this.getY());
+		if ((this.getX() - 20) < 0) {
+
+		} 
+		
+		else {
+			this.setLocation(this.getX() - 20, this.getY());
+		}
 	}
 	
 	public void moveUp(){
@@ -20,6 +32,10 @@ public class Frog extends Actor {
 	}
 
 	public void moveDown(){
+		if ((this.getY() +85) > 580){
+			
+		} else {
 		this.setLocation(this.getX(), this.getY() + 45);
+                }
 	}
 }

@@ -61,7 +61,7 @@ public class Actor extends JLabel {
 	
 	public void moveTo(){
 		if(dir)
-			this.setLocation(0 - this.lenght,this.getY());
+			this.setLocation(0 - this.getWidth(),this.getY());
 		else
 			this.setLocation(600 + this.lenght,this.getY());
 	}
@@ -73,8 +73,9 @@ public class Actor extends JLabel {
 				this.moveTo();
 			else
 				this.setLocation((int)(this.getX() + 5 * this.speed), this.getY());
-		}else{
-			if(this.getX() - lenght <= 0)
+		}
+		else{
+			if(this.getX() + this.getWidth() <= 0)
 				this.moveTo();
 			else
 				this.setLocation((int)(this.getX() - 5 * this.speed), this.getY());
