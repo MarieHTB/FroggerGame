@@ -1,4 +1,4 @@
-/**
+ /**
  * Cette classe crée un JFrame qui affiche Game Over et la possibilité de 
  * soumettre son pointage. Elle offre la possibilité de rejouer une partie, 
  * de voir la liste des 10 meilleurs pointages et de retourner au menu.
@@ -181,6 +181,9 @@ public class GameOver extends javax.swing.JFrame {
 
     private void soumButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_soumButtonActionPerformed
         // Pour soumettre le score du joueur
+    	Score scorePlayer = new Score(nameText.getText(), score); //in world this.score;
+    	Scores scores = new Scores();
+    	scores.saveScores(scorePlayer);
     }//GEN-LAST:event_soumButtonActionPerformed
 
     public static void main(String args[]) {

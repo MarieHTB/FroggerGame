@@ -10,7 +10,7 @@ public class KeyEventListener implements KeyListener {
 		this.frog = frog;
 		this.world = world;
 	}
-	
+
 	@Override
 	public void keyPressed(KeyEvent e) {
 		if (e.getKeyCode() == KeyEvent.VK_UP){
@@ -26,7 +26,7 @@ public class KeyEventListener implements KeyListener {
 			this.frog.moveLeft();
 		}
 		
-		this.world.validateFrog();
+		this.world.validateFrog();		
 	}
 
 	@Override
@@ -39,5 +39,7 @@ public class KeyEventListener implements KeyListener {
 		//Do nothing
 		
 	}
+	
+	
 
 }

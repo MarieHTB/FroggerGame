@@ -1,12 +1,3 @@
-
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.Date;
 import java.util.List;
 
 /*
@@ -21,51 +12,29 @@ import java.util.List;
  */
 public class ScorePanel extends javax.swing.JFrame {
 
+	// Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTextArea jTextArea1;
+    private javax.swing.JButton retour;
+    // End of variables declaration//GEN-END:variables
+	
     /**
      * Creates new form ScorePanel
      */
-    private String filePath;
-    
     public ScorePanel() {
         initComponents();
-        filePath = "froggerScores.txt";
+        Scores scores = new Scores();
+        List<Score> topScores = scores.checkTopScores();
+        String displayScores = "";
+        for(int i = 0; i < topScores.size(); i++){
+        	displayScores += topScores.get(i).toString() + "\n";
+        }
+        this.jTextArea1.setText(displayScores);
+        this.jTextArea1.setEditable(false);
     }
-public List<Score> checkTopScores(){
-		 ArrayList<Score> scores = new ArrayList<Score>();
-		 try {
-			 File file = new File(this.filePath);
-			 file.createNewFile();			 
-			 FileReader fileReader = new FileReader(this.filePath);
-			 BufferedReader bufferedReader = new BufferedReader(fileReader);
-			 
-			 String line;
-			 while ((line = bufferedReader.readLine()) != null) {
-				 String[] temp = line.split(";");
-				 Score score = new Score(temp[0], Integer.parseInt(temp[1]),  new Date(temp[2]));
-				 scores.add(score);
-			}
-			 	bufferedReader.close();
-				fileReader.close();				
-				
-		}
-		
-		catch (IOException e) {
-				System.out.println("Probleme durant la lecture du fichier");
-		}
-		
-		 Collections.sort(scores, Comparator.comparing(Score::getScore).reversed());
-		 
-		 
-		//aller chercher resultats du fichier filePath
-		List<Score> tempScore;
-		if(scores.size() > 10){
-			tempScore = scores.subList(0, 10);
-		}
-		else{
-			tempScore = scores.subList(0, scores.size());
-		}
-		return tempScore;
-	}
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -134,7 +103,6 @@ public List<Score> checkTopScores(){
         Intro intro = new Intro();
         intro.setVisible(true);
         this.setVisible(false);
-        this.dispose();
     }//GEN-LAST:event_retourActionPerformed
 
     /**
@@ -172,11 +140,4 @@ public List<Score> checkTopScores(){
         });
     }
 
-    // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextArea jTextArea1;
-    private javax.swing.JButton retour;
-    // End of variables declaration//GEN-END:variables
 }

@@ -16,8 +16,8 @@ public class World extends javax.swing.JFrame {
 
 	private static final long serialVersionUID = -4446533917653613543L;
 	
-	private static final int UI_UPDATE_TIME  = 200;
-	private static final int GAME_TIME = 30000;
+	private final int UI_UPDATE_TIME  = 200;
+	private final int GAME_TIME = 30000;
 	
 	private double speedCoeff;
     private int life;
@@ -44,9 +44,24 @@ public class World extends javax.swing.JFrame {
         
         this.start();
     }
-
+    /**
+     * Methode qui interrompt le jeu avant de commencer, apres avoir reussi un niveau ou avant de recommencer quand une vie est perdue
+     * @param millis nombre de millisecondes pendant lequel le programme est interromput
+     */
+    private void sleep(int millis){
+    	try {
+    	    Thread.sleep(millis);                 //1000 milliseconds is one second.
+    	} catch(InterruptedException ex) {
+    	    Thread.currentThread().interrupt();
+    	}
+    }
+    
+    /**
+     * Methode qui debute le jeu 
+     */
     public void start(){
-		System.out.println("Starting level" + this.level);
+		
+		this.sleep(2000);
 		
 		this.gameDuration = GAME_TIME;
 		this.frog.setBounds(280, 540, 40, 40);
@@ -61,41 +76,44 @@ public class World extends javax.swing.JFrame {
 		lifeLabel.setText("Vie : "+ this.life);
 		timeLabel.setText("Time : " + (this.gameDuration / 1000));
 	}
-	
 
+    /**
+     * Methode qui determine la vitesse des obstacles
+     */
 	private void setSpeedCoeff(){
 		this.speedCoeff = (Math.log(this.level) * 1.5) + 1;
 	}
 	
+	/**
+	 * Methode qui est appelee pour arreter le timer qui fait bouger les obstacles
+	 */
 	private void cleanTimer(){
 		this.timerMoveActor.stop();
 	}
 	
+	/**
+	 * 
+	 */
 	public void timeOver() {
 		this.cleanTimer();
 		this.life--;
-		System.out.println("Level Time Over" + this.life + "life left");
 		if(this.life == 0){
 			this.gameOver();
 		}
 		else{
 			this.start();
-		}
-		
+		}	
 	}
 	
-	public void frogFault()
-	{
+	public void frogFault(){
 		this.cleanTimer();
 		this.life--;
-		System.out.println("Level Frog hit an actor " + this.life + "life left");
 		if(this.life == 0){
 			this.gameOver();
 		}
 		else{
 			this.start();
-		}
-		
+		}	
 	}
 	
 	public void moveActors(){
@@ -170,19 +188,17 @@ public class World extends javax.swing.JFrame {
 	}
 	
 	public void gameOver(){
-            System.out.println("GAME OVER");
-		
-            this.removeKeyListener(this.keyEventListener);
-            GameOver go =   new GameOver(score);
-            go.setVisible(true);
-            this.setVisible(false);
-            this.dispose();
+        GameOver go =   new GameOver(this.score);
+        go.setVisible(true);
+        this.setVisible(false);
+        this.dispose();
+		this.lifeLabel.setText("Vie : 0");
 	}
 
 	public void gameCompleted(){
 		this.cleanTimer();
 		double tempScore = (double)(GAME_TIME - this.gameDuration)/(double)GAME_TIME;
-		this.score += tempScore*100*speedCoeff;
+		this.score += tempScore * 100 * speedCoeff;
 		this.levelUp();
     }  
 	
