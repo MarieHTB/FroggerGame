@@ -1,22 +1,24 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 /**
- *
+ * Cette classe crée un JFrame qui affiche Game Over et la possibilité de 
+ * soumettre son pointage. Elle offre la possibilité de rejouer une partie, 
+ * de voir la liste des 10 meilleurs pointages et de retourner au menu.
+ * 
  * @author Julien
  */
 public class GameOver extends javax.swing.JFrame {
     
     private int score;
+    
     /**
      * Creates new form GameOver
      */
     public GameOver() {
         initComponents();
     }
+    
+    /**
+     * Creates new form GameOver qui prend le pointage du joueur
+     */
     public GameOver(int score) {
         initComponents();
         this.score=score;
@@ -38,10 +40,12 @@ public class GameOver extends javax.swing.JFrame {
         rejouerButton = new javax.swing.JButton();
         scoresButton = new javax.swing.JButton();
         menuButton = new javax.swing.JButton();
+        soumButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setPreferredSize(new java.awt.Dimension(600, 650));
         setResizable(false);
+        setSize(new java.awt.Dimension(600, 650));
         getContentPane().setLayout(null);
 
         jLayeredPane1.setBackground(new java.awt.Color(0, 0, 0));
@@ -57,11 +61,6 @@ public class GameOver extends javax.swing.JFrame {
 
         nameText.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         nameText.setToolTipText("");
-        nameText.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                nameTextActionPerformed(evt);
-            }
-        });
 
         rejouerButton.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         rejouerButton.setText("REJOUER");
@@ -89,12 +88,21 @@ public class GameOver extends javax.swing.JFrame {
             }
         });
 
+        soumButton.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        soumButton.setText("Soumettre");
+        soumButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                soumButtonActionPerformed(evt);
+            }
+        });
+
         jLayeredPane1.setLayer(overLabel, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jLayeredPane1.setLayer(jLabel1, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jLayeredPane1.setLayer(nameText, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jLayeredPane1.setLayer(rejouerButton, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jLayeredPane1.setLayer(scoresButton, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jLayeredPane1.setLayer(menuButton, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jLayeredPane1.setLayer(soumButton, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         javax.swing.GroupLayout jLayeredPane1Layout = new javax.swing.GroupLayout(jLayeredPane1);
         jLayeredPane1.setLayout(jLayeredPane1Layout);
@@ -102,12 +110,7 @@ public class GameOver extends javax.swing.JFrame {
             jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jLayeredPane1Layout.createSequentialGroup()
                 .addContainerGap(115, Short.MAX_VALUE)
-                .addGroup(jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(jLayeredPane1Layout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(nameText))
-                    .addComponent(overLabel))
+                .addComponent(overLabel)
                 .addGap(107, 107, 107))
             .addGroup(jLayeredPane1Layout.createSequentialGroup()
                 .addGap(241, 241, 241)
@@ -116,6 +119,14 @@ public class GameOver extends javax.swing.JFrame {
                     .addComponent(rejouerButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(menuButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(jLayeredPane1Layout.createSequentialGroup()
+                .addGap(87, 87, 87)
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(nameText, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(soumButton, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         jLayeredPane1Layout.setVerticalGroup(
             jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -123,16 +134,20 @@ public class GameOver extends javax.swing.JFrame {
                 .addGap(88, 88, 88)
                 .addComponent(overLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addGroup(jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel1)
-                    .addComponent(nameText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addGroup(jLayeredPane1Layout.createSequentialGroup()
+                        .addComponent(soumButton, javax.swing.GroupLayout.DEFAULT_SIZE, 29, Short.MAX_VALUE)
+                        .addGap(1, 1, 1))
+                    .addGroup(jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(nameText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel1)))
                 .addGap(46, 46, 46)
                 .addComponent(rejouerButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(scoresButton, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(menuButton, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(170, Short.MAX_VALUE))
+                .addContainerGap(168, Short.MAX_VALUE))
         );
 
         getContentPane().add(jLayeredPane1);
@@ -141,12 +156,7 @@ public class GameOver extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void nameTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nameTextActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_nameTextActionPerformed
-
     private void rejouerButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rejouerButtonActionPerformed
-        //Il manque une méthode pour envoyer le score et le nom
         World world =   new World();
         world.setVisible(true);
         this.setVisible(false);
@@ -154,7 +164,7 @@ public class GameOver extends javax.swing.JFrame {
     }//GEN-LAST:event_rejouerButtonActionPerformed
 
     private void scoresButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_scoresButtonActionPerformed
-        //Il manque une méthode pour envoyer le score et le nom
+        // Dirige le joueur vers la liste des 10 meilleurs pointages
         ScorePanel sp = new ScorePanel();
         sp.setVisible(true);
         this.setVisible(false);
@@ -162,18 +172,18 @@ public class GameOver extends javax.swing.JFrame {
     }//GEN-LAST:event_scoresButtonActionPerformed
 
     private void menuButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuButtonActionPerformed
-        //Il manque une méthode pour envoyer le score et le nom
+        // Retourne le joueur au menu principal
         Intro intro = new Intro();
         intro.setVisible(true);
         this.setVisible(false);
         this.dispose();
     }//GEN-LAST:event_menuButtonActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
+    private void soumButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_soumButtonActionPerformed
+        // Pour soumettre le score du joueur
+    }//GEN-LAST:event_soumButtonActionPerformed
+
     public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
          * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
@@ -212,5 +222,6 @@ public class GameOver extends javax.swing.JFrame {
     private javax.swing.JLabel overLabel;
     private javax.swing.JButton rejouerButton;
     private javax.swing.JButton scoresButton;
+    private javax.swing.JButton soumButton;
     // End of variables declaration//GEN-END:variables
 }
