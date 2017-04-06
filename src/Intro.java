@@ -1,11 +1,9 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 
 /**
- *
+ * Cette classe crée un JFrame qui affiche le menu principal. 
+ * Elle offre la possibilité de jouer une partie, de voir la liste des 10 
+ * meilleurs pointages et de sortir du jeu.
+ * 
  * @author Julien
  */
 public class Intro extends javax.swing.JFrame {
@@ -113,20 +111,22 @@ public class Intro extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void playButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_playButtonActionPerformed
+        // Dirige le joueur vers le jeu
         World world =   new World();
         world.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_playButtonActionPerformed
 
     private void exitButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exitButtonActionPerformed
+        // Ferme l'application
         System.exit(0);
     }//GEN-LAST:event_exitButtonActionPerformed
 
     private void scoreButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_scoreButtonActionPerformed
+        // Dirige le joueur vers la liste des 10 meilleurs pointages
         ScorePanel sp = new ScorePanel();
         sp.setVisible(true);
         this.setVisible(false);
-        
     }//GEN-LAST:event_scoreButtonActionPerformed
 
     /**

@@ -2,14 +2,12 @@
 import java.util.ArrayList;
 import javax.swing.Timer;
 
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 /**
- *
+ * Cette classe crée un JFrame qui contient l'univers de jeu. Elle crée tous 
+ * les acteurs nécessaires au jeu. Elle initialise le KeyListener nécessaire aux
+ * mouvements de la grenouille. Elle continent tous les méthodes nécessaires 
+ * pour le bon fonctionnement du jeu.
+ * 
  * @author Julien
  */
 public class World extends javax.swing.JFrame {
@@ -152,8 +150,8 @@ public class World extends javax.swing.JFrame {
 		int[][] actLocation;
 		boolean inX = false; // si entre les 2 points
 		
-		if(frogLocation[0][1] < 0) {
-			this.gameCompleted();
+		if(frogLocation[0][1] == 0) {
+                    this.gameCompleted();
 		}
 		
 		for(int i = 0; i < actors.size(); i++){
@@ -220,7 +218,7 @@ public class World extends javax.swing.JFrame {
 	 * Methode pour calculer le score quand le niveau est termine
 	 */
 	public void gameCompleted(){
-		this.cleanTimer();
+            this.cleanTimer();
 		double tempScore = (double)(GAME_TIME - this.gameDuration)/(double)GAME_TIME;
 		this.score += tempScore * 100 * speedCoeff;
 		this.levelUp();

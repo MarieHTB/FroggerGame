@@ -1,13 +1,9 @@
 import java.util.List;
 
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 /**
- *
+ * Cette classe crée un jFrame permettant de voir les 10 meilleurs pointages 
+ * ainsi que de pouvoir retourner au menu principal.
+ * 
  * @author Julien
  */
 public class ScorePanel extends javax.swing.JFrame {
@@ -100,6 +96,7 @@ public class ScorePanel extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void retourActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_retourActionPerformed
+        // Permet au joueur de retourner au menu principal
         Intro intro = new Intro();
         intro.setVisible(true);
         this.setVisible(false);
