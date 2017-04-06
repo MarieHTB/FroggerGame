@@ -157,6 +157,7 @@ public class GameOver extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void rejouerButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rejouerButtonActionPerformed
+        // Dirige le joueur vers le jeu
         World world =   new World();
         world.setVisible(true);
         this.setVisible(false);
