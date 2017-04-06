@@ -46,7 +46,7 @@ public class World extends javax.swing.JFrame {
     }
     /**
      * Methode qui interrompt le jeu avant de commencer, apres avoir reussi un niveau ou avant de recommencer quand une vie est perdue
-     * @param millis nombre de millisecondes pendant lequel le programme est interromput
+     * @param millis nombre de millisecondes pendant lequel le programme est interrompu
      */
     private void sleep(int millis){
     	try {
@@ -66,11 +66,12 @@ public class World extends javax.swing.JFrame {
 		this.gameDuration = GAME_TIME;
 		this.frog.setBounds(280, 540, 40, 40);
 		
-		//Timer to move actors
+		//Timer pour bouger les acteurs
 		this.actorMoveListener = new ActorMoveListener(this);
 		this.timerMoveActor = new Timer(UI_UPDATE_TIME, this.actorMoveListener);
 		this.timerMoveActor.start();
 		
+		//pour initialiser le texte des labels
 		scoreLabel.setText("Score : " + this.score);
 		levelLabel.setText("Level : " + this.level);
 		lifeLabel.setText("Vie : "+ this.life);
@@ -92,7 +93,8 @@ public class World extends javax.swing.JFrame {
 	}
 	
 	/**
-	 * 
+	 * Methode qui est appele quand le temps est termine, 
+	 * perd soit une vie, si n'a plus de vie c'est gameOver sinon le jeu peut recommence
 	 */
 	public void timeOver() {
 		this.cleanTimer();
@@ -105,6 +107,10 @@ public class World extends javax.swing.JFrame {
 		}	
 	}
 	
+	/**
+	 * Methode qui est appelee quand la grenouille a ete en contact avec un acteur,
+	 * perd soit une vie, si n'a plus de vie c'est gameOver sinon le jeu peut recommence
+	 */
 	public void frogFault(){
 		this.cleanTimer();
 		this.life--;
@@ -116,6 +122,10 @@ public class World extends javax.swing.JFrame {
 		}	
 	}
 	
+	/**
+	 * Methode qui permet de bouger les acteurs (voitures, riviere et camion)
+	 * grace au timer timerMoveActor
+	 */
 	public void moveActors(){
 		for(int i = 0; i < this.actors.size(); i++){
 			this.actors.get(i).act();
@@ -134,12 +144,15 @@ public class World extends javax.swing.JFrame {
 
 	}
 	
+	/**
+	 * Methode qui verifie si la grenouille est en contact ou non avec les autres acteurs
+	 */
 	public void validateFrog(){
-		int[][] frogLocation = this.frog.getLocat();
+		int[][] frogLocation = this.frog.getLocat(); 
 		int[][] actLocation;
-		boolean inX = false;
+		boolean inX = false; // si entre les 2 points
 		
-		if(frogLocation[0][1] == 0) {
+		if(frogLocation[0][1] < 0) {
 			this.gameCompleted();
 		}
 		
@@ -171,11 +184,17 @@ public class World extends javax.swing.JFrame {
 			}
 		}
 	}
-		
+		/**
+		 * Methode pour avoir le score
+		 * @return la variable score
+		 */
 	public int getScore(){
 		return this.score;
 	}
 	
+	/**
+	 * Methode pour incrementer le niveau du jeu et augmenter la vitesse des acteurs
+	 */
 	public void levelUp(){
 		this.level++;
         this.setSpeedCoeff();
@@ -186,15 +205,20 @@ public class World extends javax.swing.JFrame {
         
 		this.start();
 	}
-	
+	/**
+	 * Methode appelee quand toutes les vies sont a 0 et creer le Game Over panel
+	 */
 	public void gameOver(){
-        GameOver go =   new GameOver(this.score);
+        GameOver go = new GameOver(this.score);
         go.setVisible(true);
         this.setVisible(false);
         this.dispose();
 		this.lifeLabel.setText("Vie : 0");
 	}
 
+	/**
+	 * Methode pour calculer le score quand le niveau est termine
+	 */
 	public void gameCompleted(){
 		this.cleanTimer();
 		double tempScore = (double)(GAME_TIME - this.gameDuration)/(double)GAME_TIME;

@@ -1,6 +1,10 @@
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
-
+/**
+ * Classe qui comporte la methode pour faire bouger avec les fleches la grenouille
+ * @author MHTB
+ *
+ */
 public class KeyEventListener implements KeyListener {
 
 	private Frog frog;
@@ -10,7 +14,7 @@ public class KeyEventListener implements KeyListener {
 		this.frog = frog;
 		this.world = world;
 	}
-
+	//methode pour assigner les fleches avec les mouvements de la grenouille
 	@Override
 	public void keyPressed(KeyEvent e) {
 		if (e.getKeyCode() == KeyEvent.VK_UP){
