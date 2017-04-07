@@ -5,10 +5,7 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 /**
@@ -19,8 +16,6 @@ import java.util.List;
 public class Scores {
 
 	private String filePath;
-	//DateFormat df = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
-	//Calendar date1 = Calendar.getInstance();
 	
 	/**
 	 * Constructeur qui crer le fichier text pour sauvegarder les scores
@@ -68,9 +63,10 @@ public class Scores {
 	
 	
 	/**
-	 * 
-	 * @return
+	 * Methode pour extraire les plus hauts scores et pour les ecrire
+	 * @return une liste
 	 */
+	@SuppressWarnings("deprecation")
 	public List<Score> checkTopScores(){
 		 ArrayList<Score> scores = new ArrayList<Score>();
 		 try {
@@ -82,8 +78,8 @@ public class Scores {
 			 String line;
 			 while ((line = bufferedReader.readLine()) != null) {
 				 String[] temp = line.split(";");
+				 
 				 Score score = new Score(temp[0], Integer.parseInt(temp[1]),  new Date(temp[2]));
-				 //Score score = new Score(temp[0], Integer.parseInt(temp[1]),  df.format(date1.getInstance()(temp[2])));
 				 scores.add(score);
 			}
 			 	bufferedReader.close();

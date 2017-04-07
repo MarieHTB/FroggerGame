@@ -39,7 +39,7 @@ public class World extends javax.swing.JFrame {
         
         this.keyEventListener = new KeyEventListener(this, frog);
         this.addKeyListener(this.keyEventListener);
-        
+               
         this.start();
     }
     /**
@@ -59,7 +59,9 @@ public class World extends javax.swing.JFrame {
      */
     public void start(){
 		
+    	this.keyEventListener.setEnable(false);
 		this.sleep(2000);
+		this.keyEventListener.setEnable(true);
 		
 		this.gameDuration = GAME_TIME;
 		this.frog.setBounds(280, 540, 40, 40);

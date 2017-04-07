@@ -9,28 +9,37 @@ public class KeyEventListener implements KeyListener {
 
 	private Frog frog;
 	private World world;
+	private boolean enable;
 	
 	public KeyEventListener(World world, Frog frog) {
 		this.frog = frog;
 		this.world = world;
+		this.enable = true;
 	}
-	//methode pour assigner les fleches avec les mouvements de la grenouille
+	/**
+	 * methode pour assigner les fleches avec les mouvements de la grenouille
+	 */
 	@Override
 	public void keyPressed(KeyEvent e) {
-		if (e.getKeyCode() == KeyEvent.VK_UP){
-			this.frog.moveUp();
-		}
-		else if(e.getKeyCode() == KeyEvent.VK_DOWN){
-			this.frog.moveDown();
-		}
-		else if(e.getKeyCode() == KeyEvent.VK_RIGHT){
-			this.frog.moveRight();
-		}
-		else if(e.getKeyCode() == KeyEvent.VK_LEFT){
-			this.frog.moveLeft();
+		
+		if(enable){
+			if (e.getKeyCode() == KeyEvent.VK_UP){
+				this.frog.moveUp();
+			}
+			else if(e.getKeyCode() == KeyEvent.VK_DOWN){
+				this.frog.moveDown();
+			}
+			else if(e.getKeyCode() == KeyEvent.VK_RIGHT){
+				this.frog.moveRight();
+			}
+			else if(e.getKeyCode() == KeyEvent.VK_LEFT){
+				this.frog.moveLeft();
+			}
+			
+			this.world.validateFrog();	
 		}
 		
-		this.world.validateFrog();		
+			
 	}
 
 	@Override
@@ -43,7 +52,12 @@ public class KeyEventListener implements KeyListener {
 		//Do nothing
 		
 	}
-	
-	
+	/**
+	 * desactive le keyListener
+	 * @param enable
+	 */
+	public void setEnable(boolean enable){
+		this.enable = enable;
+	}
 
 }

@@ -1,6 +1,3 @@
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
 import java.util.Date;
 
 /**
@@ -13,15 +10,15 @@ public class Score {
 	private String name;
 	private int score;
 	private Date date;
-	//DateFormat df = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
-	//Calendar date1 = Calendar.getInstance();
+	
 
 	//constructeur
 	public Score(String name, int score){
 		this.name = name;
 		this.score = score;
 		this.date = new Date();
-		//this.date1 = Calendar.getInstance();
+		
+		
 	}
 	
 	//constructeur
